@@ -1,0 +1,43 @@
+<odoo>
+    <template id="confirmation_page" name="Package Received Confirmation">
+    <t t-name="customer_delivery_confirmation.confirmation_page"> 
+        <t t-call="website.layout">
+            <t t-call-assets="web.assets_frontend"/>
+            <div class="container text-center" style="margin-top: 50px; max-width: 600px; background: #f8f9fa; padding: 20px; border-radius: 10px;">
+                <h2 class="text-success"><i class="fa fa-check-circle"></i> Package Received Confirmation</h2>
+                
+                <p class="lead">Please confirm that you have received your package:</p>
+
+                <!-- Package Details -->
+                <p><strong>Delivery Order:</strong> <span class="text-primary"><t t-esc="picking.name"/></span></p>
+
+                <!-- Confirmation Form -->
+                <form id="packageReceivedForm" action="/submit_package_received" method="post">
+                    <!-- Include CSRF Token -->
+                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                    
+                    <input type="hidden" name="picking_id" t-att-value="picking.id"/>
+                    
+                    <div class="form-group">
+                        <label for="customer_name">Full Name</label>
+                        <input type="text" id="customer_name" name="customer_name" class="form-control" required="required"/>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="checkbox" id="kvkk_agreement" name="kvkk_agreement" required="required"/>
+                        <label for="kvkk_agreement">
+                            I accept the <a href="/kvkk-policy" target="_blank">Personal Data Protection Agreement</a>.
+                        </label>
+                    </div>
+
+                    <button type="submit" id="confirmButton" class="btn btn-primary" disabled="disabled">
+                        <i class="fa fa-check"></i> Confirm Package Receipt
+                    </button>
+                </form>
+            </div>
+            <script type="text/javascript" src="/customer_delivery_confirmation/static/src/js/confirmation_page.js"></script>
+        </t>
+    </t>
+</template>
+
+</odoo>

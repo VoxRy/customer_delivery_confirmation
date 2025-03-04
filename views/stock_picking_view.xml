@@ -1,0 +1,35 @@
+<odoo>
+    <record id="view_picking_form_inherit" model="ir.ui.view">
+        <field name="name">stock.picking.form.inherit</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+
+            <!-- Ensure the QR Code is displayed properly -->
+            <xpath expr="//sheet/group" position="inside">
+                <group>
+                    <field name="qr_code" widget="image" class="oe_avatar" string="Package Receipt QR Code"/>
+                </group>
+            </xpath>
+
+            <!-- Add package receipt confirmation fields -->
+            <xpath expr="//sheet/group" position="inside">
+                <group>
+                    <field name="package_received" readonly="1"/>
+                    <field name="package_received_date" readonly="1"/>
+                    <field name="customer_name" readonly="1" string="Customer Name"/>
+                </group>
+            </xpath>
+
+            <!-- Add Confirm Receipt button in the header -->
+            <xpath expr="//header" position="inside">
+                <button name="action_confirm_receipt"
+                        type="object"
+                        string="Confirm Receipt"
+                        class="oe_highlight"
+                        attrs="{'invisible': [('package_received', '=', True)]}"/>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>

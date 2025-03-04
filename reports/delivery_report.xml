@@ -1,0 +1,16 @@
+<odoo>
+    <template id="report_delivery_order_document" inherit_id="stock.report_delivery_document">
+        <xpath expr="//table" position="after">
+            <table class="table">
+                <tr>
+                    <td><strong>Customer Package Received Confirmation</strong></td>
+                </tr>
+                <tr>
+                    <td>
+                        <img t-if="o.qr_code" t-att-src="'data:image/png;base64,%s' % o.qr_code"/>
+                    </td>
+                </tr>
+            </table>
+        </xpath>
+    </template>
+</odoo>
