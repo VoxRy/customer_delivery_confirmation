@@ -8,16 +8,16 @@
             <!-- Ensure the QR Code is displayed properly -->
             <xpath expr="//sheet/group" position="inside">
                 <group>
-                    <field name="qr_code" widget="image" class="oe_avatar" string="Package Receipt QR Code"/>
+                    <field name="qr_code" widget="image" class="oe_avatar" string="Teslim Onay QR Kodu"/>
                 </group>
             </xpath>
 
             <!-- Add package receipt confirmation fields -->
             <xpath expr="//sheet/group" position="inside">
                 <group>
-                    <field name="package_received" readonly="1"/>
-                    <field name="package_received_date" readonly="1"/>
-                    <field name="customer_name" readonly="1" string="Customer Name"/>
+                    <field name="package_received" readonly="1" />
+                    <field name="package_received_date" readonly="1" string="Teslim Tarihi"/>
+                    <field name="customer_name" readonly="1" string="Teslim Alan"/>
                 </group>
             </xpath>
 

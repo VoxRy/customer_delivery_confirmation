@@ -1,12 +1,11 @@
 <odoo>
     <!-- Success Page Template -->
-    <template id="confirmation_success" name="Package Received Success">
+    <template id="confirmation_success" name="Sipariş Teslim Onayı Başarılı">
         <t t-name="customer_delivery_confirmation.confirmation_success">  <!-- Ensure correct module reference -->
             <t t-call="website.layout">
                 <div class="container text-center" style="margin-top: 50px; max-width: 600px; background: #f8f9fa; padding: 20px; border-radius: 10px;">
-                    <h2 class="text-success"><i class="fa fa-check-circle"></i> Thank You!</h2>
-                    <p class="lead">Your package receipt has been successfully confirmed.</p>
-                    <a href="/" class="btn btn-primary">Go to Home</a>
+                    <h2 class="text-success"><i class="fa fa-check-circle"></i> Teşekkürler!</h2>
+                    <p class="lead">Sipariş teslim onayınız başarıyla alındı.</p>
                 </div>
             </t>
         </t>

@@ -1,14 +1,21 @@
 <odoo>
     <record id="email_template_package_received" model="mail.template">
-        <field name="name">Package Received Confirmation Request</field>
+        <field name="name">Sipariş Teslim Onayı Talebi</field>
         <field name="model_id" ref="stock.model_stock_picking"/>
-        <field name="subject">Please confirm receipt of your package</field>
+        <field name="subject">Lütfen sipariş teslimatınızı onaylayın</field>
         <field name="email_from">${(object.company_id.email or 'info@massivebioinformatics.com')}</field>
         <field name="email_to">${object.partner_id.email}</field>
         <field name="body_html"><![CDATA[
-            <p>Dear ${object.partner_id.name},</p>
-            <p>Your order has arrived. Please confirm receipt by clicking the button below:</p>
-            <p><a href="${object.get_confirmation_url()}" style="background: #007bff; color: #fff; padding: 10px 15px; text-decoration: none;">Confirm Receipt</a></p>
+            <p>Sayın ${object.partner_id.name},</p>
+            <p>Siparişiniz teslim edilmiştir. Lütfen aşağıdaki butona tıklayarak teslim aldığınızı onaylayın:</p>
+            <p>
+                <a href="${object.get_confirmation_url()}" 
+                   style="background: #007bff; color: #fff; padding: 10px 15px; text-decoration: none; border-radius: 5px;">
+                   📦 Siparişi Teslim Aldım
+                </a>
+            </p>
+            <p>Teşekkürler,</p>
+            <p>${object.company_id.name}</p>
         ]]></field>
     </record>
 </odoo>
