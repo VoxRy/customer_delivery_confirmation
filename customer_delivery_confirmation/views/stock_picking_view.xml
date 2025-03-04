@@ -21,14 +21,7 @@
                 </group>
             </xpath>
 
-            <!-- Add Confirm Receipt button in the header -->
-            <xpath expr="//header" position="inside">
-                <button name="action_confirm_receipt"
-                        type="object"
-                        string="Confirm Receipt"
-                        class="oe_highlight"
-                        attrs="{'invisible': [('package_received', '=', True)]}"/>
-            </xpath>
+        
 
         </field>
     </record>
