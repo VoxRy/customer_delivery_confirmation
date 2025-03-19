@@ -5,14 +5,19 @@
         <field name="inherit_id" ref="stock.view_picking_form"/>
         <field name="arch" type="xml">
 
-            <!-- Ensure the QR Code is displayed properly -->
+            <!-- QR Kodu Oluştur Butonu -->
+            <xpath expr="//header" position="inside">
+                <button name="action_generate_qr_code" type="object" string="QR Kodu Oluştur" class="btn-primary"/>
+            </xpath>
+
+            <!-- QR Kodu Alanı -->
             <xpath expr="//sheet/group" position="inside">
                 <group>
                     <field name="qr_code" widget="image" class="oe_avatar" string="Teslim Onay QR Kodu"/>
                 </group>
             </xpath>
 
-            <!-- Add package receipt confirmation fields -->
+            <!-- Teslimat Onayı Alanları -->
             <xpath expr="//sheet/group" position="inside">
                 <group>
                     <field name="package_received" readonly="1" />
@@ -20,8 +25,6 @@
                     <field name="customer_name" readonly="1" string="Teslim Alan"/>
                 </group>
             </xpath>
-
-        
 
         </field>
     </record>
