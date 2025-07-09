@@ -5,19 +5,28 @@
         <field name="inherit_id" ref="stock.view_picking_form"/>
         <field name="arch" type="xml">
 
-            <!-- QR Kodu Oluştur Butonu -->
+            <!-- Butonlar -->
             <xpath expr="//header" position="inside">
-                <button name="action_generate_qr_code" type="object" string="QR Kodu Oluştur" class="btn-primary"/>
+                <button name="action_generate_qr_code"
+                        type="object"
+                        string="QR Kodu Oluştur"
+                        class="btn-primary"/>
+
+                <button name="print_qr_code_report"
+                        type="object"
+                        string="QR Kod Yazdır"
+                        class="btn-secondary"
+                        context="{'report_type': 'qweb-pdf'}"/>
             </xpath>
 
-            <!-- QR Kodu Alanı -->
+            <!-- QR Kodu Görseli -->
             <xpath expr="//sheet/group" position="inside">
                 <group>
                     <field name="qr_code" widget="image" class="oe_avatar" string="Teslim Onay QR Kodu"/>
                 </group>
             </xpath>
 
-            <!-- Teslimat Onayı Alanları -->
+            <!-- Teslimat Onay Bilgileri -->
             <xpath expr="//sheet/group" position="inside">
                 <group>
                     <field name="package_received" readonly="1" />

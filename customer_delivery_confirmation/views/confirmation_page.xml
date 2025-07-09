@@ -11,11 +11,32 @@
                 <!-- Sipariş Bilgileri -->
                 <p><strong>Teslimat Siparişi:</strong> <span class="text-primary"><t t-esc="picking.name"/></span></p>
 
+                <!-- 🔽 Ürün Listesi: Açılır/Kapanır -->
+                <div class="form-group mt-3">
+                    <p>
+                        <a class="btn btn-outline-primary" data-toggle="collapse" href="#productListCollapse" role="button" aria-expanded="false" aria-controls="productListCollapse">
+                            Teslim Edilen Ürünleri Göster/Gizle
+                        </a>
+                    </p>
+                    <div class="collapse" id="productListCollapse">
+                        <div class="card card-body">
+                            <ul class="list-group text-left">
+                                <t t-foreach="picking.move_lines" t-as="move">
+                                    <li class="list-group-item">
+                                        <t t-esc="move.product_id.display_name"/> - 
+                                        <t t-esc="move.product_uom_qty"/> 
+                                        <t t-esc="move.product_uom.name"/>
+                                    </li>
+                                </t>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Onay Formu -->
                 <form id="packageReceivedForm" action="/submit_package_received" method="post">
-                    <!-- CSRF Token Ekle -->
+                    <!-- CSRF Token -->
                     <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
-                    
                     <input type="hidden" name="picking_id" t-att-value="picking.id"/>
                     
                     <div class="form-group">
@@ -23,7 +44,7 @@
                         <input type="text" id="customer_name" name="customer_name" class="form-control" required="required"/>
                     </div>
 
-                    <!-- KVKK Onay Bölümü -->
+                    <!-- KVKK -->
                     <div class="form-group">
                         <input type="checkbox" id="kvkk_agreement" name="kvkk_agreement" required="required"/>
                         <label for="kvkk_agreement">
@@ -43,8 +64,9 @@
                     </button>
                 </form>
             </div>
+
             <script type="text/javascript" src="/customer_delivery_confirmation/static/src/js/confirmation_page.js"></script>
         </t>
     </t>
-</template>
+    </template>
 </odoo>
