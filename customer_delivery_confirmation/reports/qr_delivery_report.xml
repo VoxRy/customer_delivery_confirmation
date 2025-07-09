@@ -1,0 +1,47 @@
+<odoo>
+    <!-- Rapor Tanımı -->
+    <report
+        id="action_report_qr_delivery"
+        string="Teslimat QR Belgesi"
+        model="stock.picking"
+        report_type="qweb-pdf"
+        name="customer_delivery_confirmation.report_qr_delivery"
+        file="customer_delivery_confirmation.report_qr_delivery"
+        print_report_name="'Teslimat_QR_' + object.name"
+    />
+
+    <!-- QWeb Şablon -->
+    <template id="report_qr_delivery">
+        <t t-call="web.basic_layout">
+            <t t-set="docs" t-value="docs"/>
+            <t t-foreach="docs" t-as="o">
+                <div class="page">
+                    <h2>Ürün Teslimatı QR Onayı</h2>
+
+                    <!-- Uyarı Metni -->
+                    <p style="font-size: 30px; margin-top: 20px;">
+                        <strong>Ürünleri teslim aldıktan sonra lütfen QR kodunu telefonunuzla okuyarak teslimat onayını gerçekleştiriniz.</strong><br/>
+                        Bu işlem <strong>resmî kayıt</strong> amacıyla zorunludur.
+                    </p>
+
+                    <!-- QR Kod Görseli -->
+                    <div style="text-align: center; margin: 50px 0;">
+                        <t t-if="o.qr_code">
+                            <img t-att-src="'data:image/png;base64,' + o.qr_code"
+                                 style="max-width: 600px; height: auto;"/>
+                        </t>
+                        <t t-if="not o.qr_code">
+                            <p style="color: red;">QR kodu mevcut değil. Lütfen 'QR Kodu Oluştur' butonunu kullanın.</p>
+                        </t>
+                    </div>
+
+                    <!-- Teslimat Bilgileri -->
+                    <p>
+                        <strong>Teslimat No:</strong> <t t-esc="o.name"/><br/>
+                        <strong>Gönderim Tarihi:</strong> <t t-esc="o.date_done or ''"/>
+                    </p>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>
